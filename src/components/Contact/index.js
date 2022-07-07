@@ -3,21 +3,27 @@ import React, { useState } from "react";
 
 function ContactForm() {
     //hook
-const [formState, setFormState] = useState({name: '', email: '', message: ''});
+    const [formState, setFormState] = useState({name: '', email: '', message: ''});
 
     const {name, email, message} = formState;
 
+    // handle change to the form data
     function handleChange(e) {
         setFormState({...formState, [e.target.name]: e.target.value })
-      }
+    }
+    console.log(formState);
       
-      console.log(formState);
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log(formState);
+    }
+    console.log(formState);
 
     //JSX
     return (
         <section>
             <h1>Contact me</h1>
-            <form id="contact-form">
+            <form id="contact-form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name:</label>
                     <input type="text" name="name" defaultValue={name} onChange={handleChange}/>
@@ -30,7 +36,7 @@ const [formState, setFormState] = useState({name: '', email: '', message: ''});
                     <label htmlFor="message">Message:</label>
                     <textarea name="message" rows="5"  defaultValue={message} onChange={handleChange} />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" >Submit</button>
             </form>
         </section>
     )
