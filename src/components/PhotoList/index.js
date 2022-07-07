@@ -103,23 +103,31 @@ function PhotoList({category}) {
     ]);
 
     const currentPhotos = photos.filter((photo) => photo.category === category);
+    const [currentPhoto, setCurrentPhoto] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleModal = (image, i) => {
+      console.log(image);
+      console.log(i);
       // current photo
+      setCurrentPhoto({...image, index: i});
+
+      // render isModalOpen to true
+      setIsModalOpen(true);
     }
 
     return (
         <div>
-          <Modal></Modal>
+          {isModalOpen && <Modal currentPhoto={currentPhoto}></Modal>}
             <div className="flex-row">
             {currentPhotos.map((image, i) => (
-                <img
+              <img
                 src={require(`../../assets/small/${category}/${i}.jpg`).default}
                 alt={image.name}
                 className="img-thumbnail mx-1"
                 onClick={() => toggleModal(image, i)}
                 key={image.name}
-                />
+              />
             ))}
             </div>
         </div>
