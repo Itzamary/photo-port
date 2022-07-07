@@ -11,13 +11,11 @@ function ContactForm() {
     function handleChange(e) {
         setFormState({...formState, [e.target.name]: e.target.value })
     }
-    console.log(formState);
       
     function handleSubmit(e) {
         e.preventDefault();
         console.log(formState);
     }
-    console.log(formState);
 
     //JSX
     return (
